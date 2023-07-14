@@ -1,0 +1,12 @@
+{
+  "name": "mod18-nosql-snsapi",
+  "version": "1.0.0",
+  "description": "Module 18 Challenge - NoSQL Social Network API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
