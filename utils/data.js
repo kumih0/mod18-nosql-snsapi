@@ -192,6 +192,38 @@ const randomNounArray = [
     'zombie'
 ];
 
+//array of random thoughts
+const thots = [
+    "Just had the best meal ever! #foodie #yum",
+    "Feeling grateful for all the wonderful people in my life. #blessed",
+    "Can't wait for the weekend! #TGIF #weekendvibes",
+    "Feeling inspired to start a new project. #creativity",
+    "Just finished reading an amazing book. Any recommendations? #reading",
+    "Missing the beach already. #summer #vacation",
+    "Excited about the upcoming concert! #musiclover #livemusic",
+    "Had a productive day at work. #worklife",
+    "Feeling motivated to hit the gym. #fitness",
+    "Enjoying the beautiful sunset. #nature",
+    "Spent the day exploring new places. #adventure #travel",
+    "Feeling nostalgic today. #throwback",
+    "Just adopted the cutest puppy! #doglover",
+    "Watching my favorite movie for the hundredth time. #movienight",
+    "Feeling proud of my achievements. #accomplishment",
+    "Trying out a new recipe in the kitchen. #cooking",
+    "Feeling grateful for all the love and support. #gratitude",
+    "Excited about the new video game release. #gaming",
+    "Feeling blessed to have such amazing friends. #friendship",
+    "Celebrating a special occasion tonight. #celebration",
+    "Feeling peaceful and relaxed. #zen",
+    "Just finished a challenging workout. #fitnessgoals",
+    "Thinking of starting a new hobby. Any suggestions?",
+    "Feeling inspired by the art exhibition I visited today. #artlover",
+    "Enjoying the rainy weather with a hot cup of tea. #rainyday",
+    "Feeling motivated to learn something new. #selfimprovement",
+];
+
+//array of random reactions
+
 
 //get random array item, code from miniproject
 const getRandomArrayItem = (array) => array[Math.floor(Math.random() * array.length)];
