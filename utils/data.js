@@ -1,5 +1,5 @@
 //array of random adjectives 
-const randomAdjectiveArray =[
+const randomAdjectiveArray = [
     'amazing',
     'apathetic',
     'arrogant',
@@ -192,7 +192,11 @@ const randomNounArray = [
     'zombie'
 ];
 
+
 //get random array item, code from miniproject
 const getRandomArrayItem = (array) => array[Math.floor(Math.random() * array.length)];
 
 //generate a random username
+const randomUsername = () =>
+    `${getRandomArrayItem(randomAdjectiveArray)}${getRandomArrayItem(randomNounArray)}${Math.floor(Math.random() * 100)}`;
+
