@@ -320,8 +320,7 @@ const reactions = [
     "This is so thought-provoking.",
     "😍",
     "I'm cheering for you.",
-    "😁",
-
+    "😁"
 ];
 
 //get random array item, code from miniproject
@@ -331,3 +330,18 @@ const getRandomArrayItem = (array) => array[Math.floor(Math.random() * array.len
 const randomUsername = () =>
     `${getRandomArrayItem(randomAdjectiveArray)}${getRandomArrayItem(randomNounArray)}${Math.floor(Math.random() * 100)}`;
 
+//generate a random thought
+const randomThought = () => getRandomArrayItem(thots);
+
+//generate a random reaction
+const randomReaction = () => getRandomArrayItem(reactions);
+
+//generate a random date
+const randomDate = () => {
+    const date = new Date();
+    const randomNumberOfDays = Math.floor(Math.random() * 365);
+    date.setDate(date.getDate() - randomNumberOfDays);
+    return date;
+}
+
+module.exports = { randomUsername, randomThought, randomReaction, randomDate };
