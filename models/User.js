@@ -5,19 +5,19 @@ const userSchema = new Schema({
     username: {
         type: String,
         unique: true,
-        required: 'You need to provide a username!',
+        required: true,
         trim: true
     },
     email: {
         type: String,
         unique: true,
-        required: 'You need to provide an email address!',
-        match: [/.+@.+\..+/, 'Please enter a valid e-mail address']
+        required: true,
+        match: [/.+@.+\..+/]
     },
     thoughts: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Thots'
+            ref: 'Thought'
         }
     ],
     friends: [this] //self-reference user model as array
