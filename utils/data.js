@@ -328,13 +328,23 @@ const getRandomArrayItem = (array) => array[Math.floor(Math.random() * array.len
 
 //generate a random username
 const randomUsername = () =>
-    `${getRandomArrayItem(randomAdjectiveArray)}${getRandomArrayItem(randomNounArray)}${Math.floor(Math.random() * 100)}`;
+    `${getRandomArrayItem(randomAdjectiveArray)}${getRandomArrayItem(randomNounArray)}${Math.floor(Math.random() * 100 + 1)}`;
 
 //generate a random thought
-const randomThought = () => getRandomArrayItem(thots);
+const randomThought = () =>  getRandomArrayItem(thots);
 
 //generate a random reaction
 const randomReaction = () => getRandomArrayItem(reactions);
+
+//generate random amount of reactions 
+const genReactions = () => {
+    const reactions = [];
+    reactions.length = Math.floor(Math.random() * 20 + 1);
+
+    for(const x of reactions) {
+        reactionBody: getRandomArrayItem(reactions),
+    }
+}
 
 //generate a random date
 const randomDate = () => {

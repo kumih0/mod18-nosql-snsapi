@@ -21,3 +21,24 @@ Module 18 Challenge - NoSQL Social Network API
 
 
 
+### Pseudo Code (Seeds)
+- create users
+    - generate a set amount of users
+    - generate random username
+    - username ref for gen email
+
+- thoughts
+    - generate set total of all thoughts
+    - generate random thoughtText
+    - createdat gen random date
+    - username from generated user array
+
+- reactions
+    - generate random set of reactions attached to generated thoughts array
+    - username from generated user array 
+    -createdat random date that is greater than or equal to thoughtdate
+    - reactionbody randomreaction
+
+- push reactions to thoughts array ?
+- push thoughts to users array
+- insertmany
