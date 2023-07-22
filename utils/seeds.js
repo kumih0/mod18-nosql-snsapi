@@ -24,6 +24,8 @@ connection.once('open', async () => {
 
     console.log(users);
 
+    //
+
     let totalThotCount = 0;
     for (const user of users) {
         totalThotCount += user.userThots.length;
@@ -60,20 +62,20 @@ connection.once('open', async () => {
     //create thought array and thought obj
     const thoughts = [];
 
-    
-    
-    //creating thought array
-    // const thoughts = [];
-    // thoughts.length = totalThotCount;
+    thoughts.length = totalThotCount;
 
-    // for (let i = 0; i < totalThotCount; i++) {
-    //     thoughts[i] = await Thought.collection.insertOne({
-    //         thoughtText: randomThought(),
-    //         createdAt: randomDate(),
-    //         username: users[Math.floor(Math.random() * users.length)].username,
-    //         reactions: []
-    //     })
-    // }
+    for(const thought of thoughts) {
+        //creating thought object to insert in thoughts array
+        thought = {
+            thoughtText: randomThought(),
+            createdAt: randomDate(),
+            username: getRandomUser(),
+            reactions: genReactions(),
+        };
+        thoughts.push(thought);
+    };
+    console.log(thoughts);
 
+    //
 
 });
