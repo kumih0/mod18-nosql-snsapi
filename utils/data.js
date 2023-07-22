@@ -348,10 +348,25 @@ const genReactions = () => {
 
 //generate a random date
 const randomDate = () => {
+    //creating new date object
     const date = new Date();
+    //generating a random number between 0-364, (within past year)
     const randomNumberOfDays = Math.floor(Math.random() * 365);
+    //setting date value to be a random day in the past year
     date.setDate(date.getDate() - randomNumberOfDays);
+    //returning new date value
+    return date;
+}
+//reactions should only be created at or after the date of original post, passing 'date' as arg
+const randomDateAfter = (pastDate) => {
+    //setting date as same initial value passed in
+    const date = new Date(pastDate);
+    //get random num days 0-31, within a month
+    const randomNumberOfDays = Math.floor(Math.random() * 32);
+    //adding the random number of days after the initial date 
+    date.setDate(pastDate.getDate() + randomNumberOfDays);
+    //returning date with new date value
     return date;
 }
 
-module.exports = { randomUsername, randomThought, randomReaction, randomDate };
+module.exports = { randomUsername, randomThought, randomReaction, randomDate, randomDateAfter };
