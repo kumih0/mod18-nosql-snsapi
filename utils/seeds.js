@@ -24,7 +24,38 @@ connection.once('open', async () => {
 
     console.log(users);
 
-    //
+    //get random user helper funct
+    const getRandomUser = () => {
+        return users[Math.floor(Math.random() * users.length)].username;
+    };
+
+    //generate friends list
+    for (const user of users) {
+        if (user.friends == null){
+            const friends = [];
+            const totalFriends = Math.floor(Math.random() * users.length);
+
+            //potential friend list will be filtered user array
+            const potentialFriends = users.filter((friend) => friend.username !== user.username);
+
+            //get random friend from potential friends array
+            const getRandomFriend = () => {
+                return potentialFriends[Math.floor(Math.random() * potentialFriends.length)].username;
+            };
+
+            //loop through total friends and push random user into friends array
+
+            for(let i = 0; i <= totalFriends; i++ ){
+                
+
+                const newFriend = getRandomFriend();
+
+                //filter users array to exclude all users already in friends array
+
+                // friends.includes(newFriend) ? newFriend = getRandomUser()
+            }
+        }
+    }
 
     let totalThotCount = 0;
     for (const user of users) {
@@ -32,10 +63,6 @@ connection.once('open', async () => {
     }
     console.log(totalThotCount);
 
-    //get random user helper funct
-    const getRandomUser = () => {
-        return users[Math.floor(Math.random() * users.length)].username;
-    };
 
     //generating a random amount of reactions for single thought
     const genReactions = () => {
