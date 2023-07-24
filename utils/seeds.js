@@ -39,21 +39,22 @@ connection.once('open', async () => {
             const potentialFriends = users.filter((friend) => friend.username !== user.username);
 
             //get random friend from potential friends array
-            const getRandomFriend = () => {
+            const getRandomFriend = (potentialFriends) => {
                 return potentialFriends[Math.floor(Math.random() * potentialFriends.length)].username;
             };
 
             //loop through total friends and push random user into friends array
-
             for(let i = 0; i <= totalFriends; i++ ){
-                
+                //check the friends array and filter out any users already in the array
+                const shortList = potentialFriends.filter((friend) => !friends.includes(friend));
+                console.log(shortList);
 
-                const newFriend = getRandomFriend();
-
-                //filter users array to exclude all users already in friends array
-
-                // friends.includes(newFriend) ? newFriend = getRandomUser()
+                const newFriend = getRandomFriend(shortList);
+                console.log(newFriend);
+                friends.push(newFriend);
             }
+            console.log(friends);
+            user.friends = friends;
         }
     }
 
