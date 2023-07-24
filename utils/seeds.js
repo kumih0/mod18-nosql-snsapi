@@ -25,8 +25,8 @@ connection.once('open', async () => {
     console.log(users);
 
     //get random user helper funct
-    const getRandomUser = () => {
-        return users[Math.floor(Math.random() * users.length)].username;
+    const getRandomUser = (array) => {
+        return array[Math.floor(Math.random() * array.length)].username;
     };
 
     //generate friends list
@@ -35,21 +35,21 @@ connection.once('open', async () => {
             const friends = [];
             const totalFriends = Math.floor(Math.random() * users.length);
 
-            //potential friend list will be filtered user array
-            const potentialFriends = users.filter((friend) => friend.username !== user.username);
+            // //potential friend list will be filtered user array
+            // const potentialFriends = users.filter((friend) => friend.username !== user.username);
 
-            //get random friend from potential friends array
-            const getRandomFriend = (potentialFriends) => {
-                return potentialFriends[Math.floor(Math.random() * potentialFriends.length)].username;
-            };
+            // //get random friend from potential friends array
+            // const getRandomFriend = (potentialFriends) => {
+            //     return potentialFriends[Math.floor(Math.random() * potentialFriends.length)].username;
+            // };
 
             //loop through total friends and push random user into friends array
             for(let i = 0; i <= totalFriends; i++ ){
                 //check the friends array and filter out any users already in the array
-                const shortList = potentialFriends.filter((friend) => !friends.includes(friend));
-                console.log(shortList);
+                const potentialFriends = users.filter((friend) => !friends.includes(friend) && friend.username !== user.username);
+                console.log(potentialFriends);
 
-                const newFriend = getRandomFriend(shortList);
+                const newFriend = getRandomUser(potentialFriends);
                 console.log(newFriend);
                 friends.push(newFriend);
             }
@@ -78,7 +78,7 @@ connection.once('open', async () => {
             //creating reaction obj based on schema and pushing into reactions array
             reaction = {
                 reactionBody: randomReaction(),
-                username: getRandomUser(),
+                username: getRandomUser(users),
                 createdAt: randomDateAfter(date) //using helper funct to generate a random date, passing orig date as arg
             }
             reactions.push(reaction);
@@ -97,7 +97,7 @@ connection.once('open', async () => {
         thought = {
             thoughtText: randomThought(),
             createdAt: randomDate(),
-            username: getRandomUser(),
+            username: getRandomUser(users),
             reactions: genReactions(),
         };
         thoughts.push(thought);
