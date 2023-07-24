@@ -336,15 +336,15 @@ const randomThought = () =>  getRandomArrayItem(thots);
 //generate a random reaction
 const randomReaction = () => getRandomArrayItem(reactions);
 
-//generate random amount of reactions 
-const genReactions = () => {
-    const reactions = [];
-    reactions.length = Math.floor(Math.random() * 20 + 1);
+// //generate random amount of reactions 
+// const genReactions = () => {
+//     const reactions = [];
+//     reactions.length = Math.floor(Math.random() * 20 + 1);
 
-    for(const x of reactions) {
-        reactionBody: getRandomArrayItem(reactions),
-    }
-}
+//     for(const x of reactions) {
+//         reactionBody: getRandomArrayItem(reactions),
+//     }
+// }
 
 //generate a random date
 const randomDate = () => {

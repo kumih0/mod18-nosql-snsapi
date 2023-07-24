@@ -1,5 +1,6 @@
 const connection = require('../config/connections');
 const { User, Thought } = require('../models');
+const { all } = require('../routes');
 const { randomUsername, randomThought, randomReaction, randomDate, randomDateAfter } = require('./data');
 
 connection.on('error', (err) => err);
@@ -29,9 +30,9 @@ connection.once('open', async () => {
         return array[Math.floor(Math.random() * array.length)].username;
     };
 
-    //generate friends list
+    //generate friends list MAP FOR EACH OR FILTER WILL GO FROM INDEX0 OR ARRAY UNTIL END OG LENGTH, CONDENSE
     for (const user of users) {
-        if (user.friends == null){
+        if (user.friends == null) {
             const friends = [];
             const totalFriends = Math.floor(Math.random() * users.length);
 
@@ -44,7 +45,7 @@ connection.once('open', async () => {
             // };
 
             //loop through total friends and push random user into friends array
-            for(let i = 0; i <= totalFriends; i++ ){
+            for (let i = 0; i <= totalFriends; i++) {
                 //check the friends array and filter out any users already in the array
                 const potentialFriends = users.filter((friend) => !friends.includes(friend) && friend.username !== user.username);
                 console.log(potentialFriends);
@@ -58,11 +59,11 @@ connection.once('open', async () => {
         }
     }
 
-    let totalThotCount = 0;
-    for (const user of users) {
-        totalThotCount += user.userThots.length;
-    }
-    console.log(totalThotCount);
+    // let totalThotCount = 0;
+    // for (const user of users) {
+    //     totalThotCount += user.userThots.length;
+    // }
+    // console.log(totalThotCount);
 
 
     //generating a random amount of reactions for single thought
@@ -86,24 +87,32 @@ connection.once('open', async () => {
         console.table(reactions);
         return reactions;
     }
+    //creating empty thoughts array
+    const allThoughts = [];
 
-    //create thought array and thought obj
-    const thoughts = [];
+    //generate thoughts for each user
+    for (const user of users) {
+        //create thought array and thought obj
+        const thoughts = [];
+        thoughts.length = Math.floor(Math.random() * 20 + 1);
 
-    thoughts.length = totalThotCount;
-
-    for(const thought of thoughts) {
-        //creating thought object to insert in thoughts array
-        thought = {
-            thoughtText: randomThought(),
-            createdAt: randomDate(),
-            username: getRandomUser(users),
-            reactions: genReactions(),
+        for (const thought of thoughts) {
+            //creating thought object to insert in thoughts array
+            thought = {
+                thoughtText: randomThought(),
+                createdAt: randomDate(),
+                username: user.username, //using this to refer to the user object
+                reactions: genReactions(),
+            };
+            thoughts.push(thought);
+            allThoughts.push(thought);
         };
-        thoughts.push(thought);
-    };
-    console.log(thoughts);
+        console.log(thoughts);
+        user.thoughts = thoughts;
+    }
+    console.log(allThoughts);
 
-    //
+    //insert users into db
+    
 
-});
+    });
