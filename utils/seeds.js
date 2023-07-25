@@ -104,14 +104,17 @@ connection.once('open', async () => {
         }
         console.log(reactions);
         thought.reactions = reactions;
-
     });
+    console.log(allThoughts);
+
+    //insert users into db
+    await User.collection.insertMany(users);
+    //insert thoughts into db
+    await Thought.collection.insertMany(allThoughts);
+
+    console.table(users);
     console.table(allThoughts);
-    
-            // //insert users into db
-            // await User.collection.insertMany(users);
-            // //insert thoughts into db
-            // await Thought.collection.insertMany(allThoughts);
+    console.log('all done!');
+    process.exit(0);
 
-
-        });
+});
