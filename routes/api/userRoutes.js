@@ -27,4 +27,3 @@ router
     .delete(removeFriend);
 
 module.exports = router;
-// Path: routes/api/index.js

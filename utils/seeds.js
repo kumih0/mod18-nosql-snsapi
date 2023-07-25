@@ -111,6 +111,7 @@ connection.once('open', async () => {
     console.table(users);
     console.table(allThoughts);
     console.log('all done!');
+    console.log(users);
     process.exit(0);
 
 });
