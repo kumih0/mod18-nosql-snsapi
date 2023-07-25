@@ -336,16 +336,6 @@ const randomThought = () =>  getRandomArrayItem(thots);
 //generate a random reaction
 const randomReaction = () => getRandomArrayItem(reactions);
 
-// //generate random amount of reactions 
-// const genReactions = () => {
-//     const reactions = [];
-//     reactions.length = Math.floor(Math.random() * 20 + 1);
-
-//     for(const x of reactions) {
-//         reactionBody: getRandomArrayItem(reactions),
-//     }
-// }
-
 //generate a random date
 const randomDate = () => {
     //creating new date object
@@ -357,16 +347,4 @@ const randomDate = () => {
     //returning new date value
     return date;
 }
-//reactions should only be created at or after the date of original post, passing 'date' as arg
-const randomDateAfter = (pastDate) => {
-    //setting date as same initial value passed in
-    const date = new Date(pastDate);
-    //get random num days 0-31, within a month
-    const randomNumberOfDays = Math.floor(Math.random() * 32);
-    //adding the random number of days after the initial date 
-    date.setDate(pastDate.getDate() + randomNumberOfDays);
-    //returning date with new date value
-    return date;
-}
-
-module.exports = { randomUsername, randomThought, randomReaction, randomDate, randomDateAfter };
+module.exports = { randomUsername, randomThought, randomReaction, randomDate };
