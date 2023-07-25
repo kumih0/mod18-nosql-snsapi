@@ -140,7 +140,6 @@ const randomNounArray = [
     'hippo',
     'horse',
     'hamburger',
-    'ice cream',
     'iguana',
     'jellyfish',
     'jerk',
