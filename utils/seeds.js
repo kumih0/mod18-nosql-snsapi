@@ -21,7 +21,6 @@ connection.once('open', async () => {
 
         users.push({ username, email, thoughts, friends });
     }
-    console.log(users);
 
     //get random user helper funct
     const getRandomUser = (array) => {
@@ -38,15 +37,16 @@ connection.once('open', async () => {
         for (let i = 0; i <= totalFriends; i++) {
             //check the friends array and filter out any users already in the array
             const potentialFriends = users.filter((friend) => !friends.includes(friend) && friend.username !== user.username);
-
+            //call getrandomuser funct
             const newFriend = getRandomUser(potentialFriends);
+
             friends.push(newFriend);
         }
-        console.log(friends);
+        //set friends array to user.friends
         user.friends = friends;
     });
-    console.log(users);
-
+ 
+    //create empty allthoughts array
     const allThoughts = [];
 
     //for each user, create a random number of thoughts
@@ -62,13 +62,12 @@ connection.once('open', async () => {
             const username = user.username;
 
             thoughts.push({ thoughtText, createdAt, username });
+            //pushing all thoughts into allthoughts array
             allThoughts.push({ thoughtText, createdAt, username });
         }
+        //set thoughts array to user.thoughts
         user.thoughts = thoughts;
-        console.log(user);
     });
-    console.log(allThoughts);
-
 
     //generate reactions for each thought
     allThoughts.map((thought) => {
@@ -76,22 +75,20 @@ connection.once('open', async () => {
         const reactions = [];
         //create random number of reactions
         const totalReactions = Math.floor(Math.random() * 20);
-        //grab thought createdat from array
+        //grab thought createdat from array by matching index in array
         let index = allThoughts.indexOf(thought);
         const thotDate = allThoughts[index].createdAt;
-        console.log(thotDate);
 
+        //reaction date must be after thought date
         const randomDateAfter = () => {
             //new date obj same date as thought
             const date = new Date(thotDate);
-            //generating a random number between 0-30, (within past month)
             const randomNumberOfDays = Math.floor(Math.random() * 30);
             //setting date value to be a random day within a month after thought createdat date
             date.setDate(date.getDate() + randomNumberOfDays);
             //returning new date value
             return date;
         }
-        console.log(randomDateAfter());
 
         //loop through total reactions
         for (let i = 0; i <= totalReactions; i++) {
@@ -102,11 +99,10 @@ connection.once('open', async () => {
 
             reactions.push({ reactionBody, username, createdAt });
         }
-        console.log(reactions);
+        //set reactions array to thought.reactions
         thought.reactions = reactions;
     });
-    console.log(allThoughts);
-
+ 
     //insert users into db
     await User.collection.insertMany(users);
     //insert thoughts into db
