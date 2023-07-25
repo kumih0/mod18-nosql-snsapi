@@ -64,7 +64,6 @@ connection.once('open', async () => {
             thoughts.push({ thoughtText, createdAt, username });
             allThoughts.push({ thoughtText, createdAt, username });
         }
-        // allThoughts.push(thoughts);
         user.thoughts = thoughts;
         console.log(user);
     });
@@ -75,15 +74,15 @@ connection.once('open', async () => {
     console.log(allThoughtDates);
 
     //generate reactions for each thought
-    // allThoughts.map((thought) => {
-    //     //create empty reactions array
-    //     const reactions = [];
-    //     //create random number of reactions
-    //     const totalReactions = Math.floor(Math.random() * 20);
-        // //grab thought createdat from array
-        // let index = allThoughts.indexOf(thought);
-        // const thotDate = allThoughtDates[index];
-        // console.log(thotDate);
+    allThoughts.map((thought) => {
+        //create empty reactions array
+        const reactions = [];
+        //create random number of reactions
+        const totalReactions = Math.floor(Math.random() * 20);
+        //grab thought createdat from array
+        let index = allThoughts.indexOf(thought);
+        const thotDate = allThoughtDates[index].createdAt;
+        console.log(thotDate);
 
         // const randomDays = Math.floor(Math.random() * 30);
         // const reactionDate = thotDate.setDate(thotDate.getDate() + randomDays);
@@ -100,7 +99,7 @@ connection.once('open', async () => {
     //     }
     //     thought.reactions = reactions;
     //     console.log(thought);
-    // });
+    });
 
 
 
