@@ -60,22 +60,35 @@ connection.once('open', async () => {
             const thoughtText = randomThought();
             const createdAt = randomDate();
             const username = user.username;
-            const reactions = [];
 
-            thoughts.push({ thoughtText, createdAt, username, reactions });
+            thoughts.push({ thoughtText, createdAt, username });
+            allThoughts.push({ thoughtText, createdAt, username });
         }
-        allThoughts.push(thoughts);
+        // allThoughts.push(thoughts);
         user.thoughts = thoughts;
         console.log(user);
     });
+    console.log(allThoughts);
+    
+    //getting all thought createdat dates
+    const allThoughtDates = allThoughts.filter((thought) => thought.createdAt);
+    console.log(allThoughtDates);
 
     //generate reactions for each thought
-    allThoughts.map((thought) => {
-        //create empty reactions array
-        const reactions = [];
-        //create random number of reactions
-        const totalReactions = Math.floor(Math.random() * 20);
-        
+    // allThoughts.map((thought) => {
+    //     //create empty reactions array
+    //     const reactions = [];
+    //     //create random number of reactions
+    //     const totalReactions = Math.floor(Math.random() * 20);
+        // //grab thought createdat from array
+        // let index = allThoughts.indexOf(thought);
+        // const thotDate = allThoughtDates[index];
+        // console.log(thotDate);
+
+        // const randomDays = Math.floor(Math.random() * 30);
+        // const reactionDate = thotDate.setDate(thotDate.getDate() + randomDays);
+        // console.log(reactionDate);
+
     //     //loop through total reactions and push random reaction into reactions array
     //     for (let i = 0; i <= totalReactions; i++) {
     //         const reactionBody = randomReaction();
