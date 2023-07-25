@@ -68,10 +68,7 @@ connection.once('open', async () => {
         console.log(user);
     });
     console.log(allThoughts);
-    
-    //getting all thought createdat dates
-    const allThoughtDates = allThoughts.filter((thought) => thought.createdAt);
-    console.log(allThoughtDates);
+
 
     //generate reactions for each thought
     allThoughts.map((thought) => {
@@ -81,153 +78,36 @@ connection.once('open', async () => {
         const totalReactions = Math.floor(Math.random() * 20);
         //grab thought createdat from array
         let index = allThoughts.indexOf(thought);
-        const thotDate = allThoughtDates[index].createdAt;
+        const thotDate = allThoughts[index].createdAt;
         console.log(thotDate);
 
-        // const randomDays = Math.floor(Math.random() * 30);
-        // const reactionDate = thotDate.setDate(thotDate.getDate() + randomDays);
-        // console.log(reactionDate);
+        const randomDateAfter = () => {
+            //new date obj same date as thought
+            const date = new Date(thotDate);
+            //generating a random number between 0-30, (within past month)
+            const randomNumberOfDays = Math.floor(Math.random() * 30);
+            //setting date value to be a random day within a month after thought createdat date
+            date.setDate(date.getDate() + randomNumberOfDays);
+            //returning new date value
+            return date;
+        }
+        console.log(randomDateAfter());
 
-    //     //loop through total reactions and push random reaction into reactions array
-    //     for (let i = 0; i <= totalReactions; i++) {
-    //         const reactionBody = randomReaction();
-    //         const username = getRandomUser(users);
-    //         //reactions createdat date random num of days within a month after thought createdat date
-    //         const createdAt = randomDateAfter();
-            
-    //         reactions.push({ reactionBody, username, createdAt });
-    //     }
-    //     thought.reactions = reactions;
-    //     console.log(thought);
+        //loop through total reactions
+        for (let i = 0; i <= totalReactions; i++) {
+            const reactionBody = randomReaction();
+            const username = getRandomUser(users);
+            //calling randomdateafter funct
+            const createdAt = randomDateAfter();
+
+            reactions.push({ reactionBody, username, createdAt });
+        }
+        console.log(reactions);
+        thought.reactions = reactions;
+
     });
-
-
-
-
-            // const allThoughts = [];
-
-            // //generate thoughts for each user
-            // users.map((user) => {
-            //     //creating empty thoughts array
-            //     const thoughts = [];
-            //     //creating random amount of thoughts under 20
-            //     thoughts.length = Math.floor(Math.random() * 20 + 1);
-            //     //looping through thoughts array and creating thought obj
-            //     thoughts.map((thought) => {
-            //         thought = {
-            //             thoughtText: randomThought(),
-            //             createdAt: randomDate(),
-            //             username: user.username,
-            //             reactions: [],
-            //         };
-            //         //pushing thought into thoughts array
-            //         thoughts.push(thought);
-            //         //pushing thought into allThoughts array
-            //         allThoughts.push(thought);
-            //     });
-            //     console.log(thoughts);
-            //     //pushing thoughts array into user object
-            //     user.thoughts = thoughts;
-            // });
-            // console.log(allThoughts);
-
-            // //generate random reactions for each thought
-            // allThoughts.map((thought) => {
-            //     //creating empty reactions array
-            //     const reactions = [];
-            //     //creating random amount of reactions under 20
-            //     reactions.length = Math.floor(Math.random() * 20 + 1);
-            //     //reactions should only be created at or after the date of original post, passing 'date' as arg
-            //     const thotDate = new Date(thought.createdAt);
-            //     //creating reaction obj based on schema and pushing into reactions array
-            //     reactions.map((reaction) => {
-            //         reaction = {
-            //             reactionBody: randomReaction(),
-            //             username: getRandomUser(users),
-            //             createdAt: randomDateAfter(thotDate),
-            //         }
-            //         //pushing reaction into reactions array
-            //         reactions.push(reaction);
-            //     });
-            //     console.table(reactions);
-            //     //pushing reactions array into thought object
-            //     thought.reactions = reactions;
-            // });
-            // console.table(allThoughts);
-
-
-            // //generating a random amount of reactions for single thought
-            // const genReactions = (date) => {
-            //     //creating empty reactions array
-            //     const reactions = [];
-            //     //creating a random amount of reactions under 20
-            //     reactions.length = Math.floor(Math.random() * 20 + 1);
-            //     //reactions should only be created at or after the date of original post, passing 'date' as arg
-            //     const thotDate = new Date(date);
-            //     //creating reaction obj based on schema and pushing into reactions array
-            //     reactions.map((reaction) => {
-            //         reaction = {
-            //             reactionBody: randomReaction(),
-            //             username: getRandomUser(users),
-            //             createdAt: randomDateAfter(thotDate),
-            //         }
-            //         //pushing reaction into reactions array
-            //         reactions.push(reaction);
-            //     });
-            //     console.table(reactions);
-            //     return reactions;
-            // };
-
-            // //creating empty thoughts array
-            // const allThoughts = [];
-
-            // //generate thoughts for each user
-            // users.map((user) => {
-            //     //creating empty thoughts array
-            //     const thoughts = [];
-            //     //creating random amount of thoughts under 20
-            //     thoughts.length = Math.floor(Math.random() * 20 + 1);
-            //     //looping through thoughts array and creating thought obj
-            //     thoughts.map((thought) => {
-            //         thought = {
-            //             thoughtText: randomThought(),
-            //             createdAt: randomDate(),
-            //             username: user.username,
-            //             reactions: genReactions(this.createdAt),
-            //         };
-            //         //pushing thought into thoughts array
-            //         thoughts.push(thought);
-            //         //pushing thought into allThoughts array
-            //         allThoughts.push(thought);
-            //     });
-            //     console.log(thoughts);
-            //     //pushing thoughts array into user object
-            //     user.thoughts = thoughts;
-            // });
-            // console.log(allThoughts);
-
-
-            // for (const user of users) {
-            //     //create thought array and thought obj
-            //     const thoughts = [];
-            //     thoughts.length = Math.floor(Math.random() * 20 + 1);
-
-            //     for (let thought of thoughts) {
-            //         //creating thought object to insert in thoughts array
-            //         thought = {
-            //             thoughtText: randomThought(),
-            //             createdAt: randomDate(),
-            //             username: user.username, //using this to refer to the user object
-            //             reactions: genReactions(this.createdAt),
-            //         };
-            //         thoughts.push(thought);
-            //         allThoughts.push(thought);
-            //     };
-            //     console.log(thoughts);
-            //     user.thoughts = thoughts;
-            // }
-            // console.log(allThoughts);
-
+    console.table(allThoughts);
+    
             // //insert users into db
             // await User.collection.insertMany(users);
             // //insert thoughts into db
