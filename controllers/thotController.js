@@ -4,7 +4,6 @@ const {User, Thought} = require('../models');
 module.exports = {
     //get all thoughts
     async getAllThoughts (req, res) {
-        console.log('get all thoughts req received');
         try {
             const thoughtData = await Thought.find()
                 .populate({
@@ -13,7 +12,6 @@ module.exports = {
                 })
                 .select('-__v')
                 .sort({ _id: -1 });
-                console.log(thoughtData);
             res.status(200).json(thoughtData);
         } catch (err) {
             console.error(err);
