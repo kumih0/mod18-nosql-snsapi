@@ -37,11 +37,11 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 
 ## Video Demo Walkthrough
 
-
+![Video Demo Walkthrough](https://drive.google.com/file/d/1kLH3JM1rVVL9OraZV5-MbJ5mpUFGQoY6/view)
 
 ## Github Repo Link
 
-https://github.com/kumih0/mod18-nosql-snsapi
+![This very repo!](https://github.com/kumih0/mod18-nosql-snsapi)
 
 ### Pseudo Code (Seeds)
 - create users
@@ -49,8 +49,13 @@ https://github.com/kumih0/mod18-nosql-snsapi
     - generate random username
     - username ref for gen email
 
+-friends array
+    -for every user generate random # of friends
+    -users array must exclude self username
+    -avoid repeats, compare w generating user.friends array?
+
 - thoughts
-    - generate set total of all thoughts
+    - generate random amount of thoughts for each user
     - generate random thoughtText
     - createdat gen random date
     - username from generated user array
@@ -58,7 +63,7 @@ https://github.com/kumih0/mod18-nosql-snsapi
 - reactions
     - generate random set of reactions attached to generated thoughts array
     - username from generated user array 
-    -createdat random date that is greater than or equal to thoughtdate
+    -createdat random date AFTER thought createdat date
     - reactionbody randomreaction
 
 - push reactions to thoughts array ?
