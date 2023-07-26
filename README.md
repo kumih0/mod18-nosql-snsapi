@@ -30,7 +30,15 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 - models: user, thought, and reaction schema
 - routes: index, apiroutes
 - controllers: usercontroller and thoughtcontroller to export functions
-- util: data and seeds, create data and sees dunny data
+- util: data and seeds, create data and seed dummy data
+- made my life so much harder because i decided to randomize seed data
+    - usernames and amount of users randomized
+    - each user assigned random amopunt of friends, excluding self and prev. selected users (no dupes)
+    - each user has random amount of thoughts
+    - thoughts generated w random createdat dates and random amount of reactions
+    - reactions amount and content randomized, with randomized createdat dates AFTER the given thought date they're responding to (within a month) 
+    >>The randomized reaction dates were such a nightmare, idk why i do this to myself
+    >>Refactored the seed data file to use map/filter instead of ARCHAIC UNGABUNGA for loops from hell
 - connected models and created functions (get/add/remove/update X)
 - passed relevant functions to routes and connected them with their respective route methods (get/post/delete/put)
 - confirmed routes work through insomnia
